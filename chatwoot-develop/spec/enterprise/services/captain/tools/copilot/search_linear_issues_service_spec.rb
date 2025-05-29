@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe AI Agent::Tools::Copilot::SearchLinearIssuesService do
   let(:account) { create(:account) }
-  let(:assistant) { create(:aiagent_assistant, account: account) }
+  let(:topic) { create(:aiagent_topic, account: account) }
   let(:user) { create(:user, account: account) }
-  let(:service) { described_class.new(assistant, user: user) }
+  let(:service) { described_class.new(topic, user: user) }
 
   describe '#name' do
     it 'returns the correct service name' do
@@ -48,7 +48,7 @@ RSpec.describe AI Agent::Tools::Copilot::SearchLinearIssuesService do
       end
 
       context 'when user is not present' do
-        let(:service) { described_class.new(assistant) }
+        let(:service) { described_class.new(topic) }
 
         it 'returns false' do
           expect(service.active?).to be false
@@ -64,7 +64,7 @@ RSpec.describe AI Agent::Tools::Copilot::SearchLinearIssuesService do
       end
 
       context 'when user is not present' do
-        let(:service) { described_class.new(assistant) }
+        let(:service) { described_class.new(topic) }
 
         it 'returns false' do
           expect(service.active?).to be false

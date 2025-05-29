@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe AI Agent::Copilot::ResponseJob, type: :job do
   let(:account) { create(:account) }
   let(:user) { create(:user, account: account) }
-  let(:assistant) { create(:aiagent_assistant, account: account) }
-  let(:copilot_thread) { create(:aiagent_copilot_thread, account: account, user: user, assistant: assistant) }
+  let(:topic) { create(:aiagent_topic, account: account) }
+  let(:copilot_thread) { create(:aiagent_copilot_thread, account: account, user: user, topic: topic) }
   let(:conversation_id) { 123 }
   let(:message) { { 'content' => 'Test message' } }
 
@@ -13,7 +13,7 @@ RSpec.describe AI Agent::Copilot::ResponseJob, type: :job do
 
     before do
       allow(AI Agent::Copilot::ChatService).to receive(:new).with(
-        assistant,
+        topic,
         user_id: user.id,
         copilot_thread_id: copilot_thread.id,
         conversation_id: conversation_id
@@ -23,14 +23,14 @@ RSpec.describe AI Agent::Copilot::ResponseJob, type: :job do
 
     it 'initializes ChatService with correct parameters and calls generate_response' do
       expect(AI Agent::Copilot::ChatService).to receive(:new).with(
-        assistant,
+        topic,
         user_id: user.id,
         copilot_thread_id: copilot_thread.id,
         conversation_id: conversation_id
       )
       expect(chat_service).to receive(:generate_response).with(message)
       described_class.perform_now(
-        assistant: assistant,
+        topic: topic,
         conversation_id: conversation_id,
         user_id: user.id,
         copilot_thread_id: copilot_thread.id,

@@ -1,4 +1,4 @@
-class AI Agent::AssistantPolicy < ApplicationPolicy
+class AI Agent::TopicPolicy < ApplicationPolicy
   def index?
     true
   end

@@ -27,7 +27,7 @@ class AI Agent::Tools::Copilot::GetArticleService < AI Agent::Tools::BaseService
 
     return 'Missing required parameters' if article_id.blank?
 
-    article = Article.find_by(id: article_id, account_id: @assistant.account_id)
+    article = Article.find_by(id: article_id, account_id: @topic.account_id)
     return 'Article not found' if article.nil?
 
     article.to_llm_text

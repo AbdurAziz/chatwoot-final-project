@@ -1,9 +1,9 @@
 /* global axios */
 import ApiClient from '../ApiClient';
 
-class AI AgentAssistant extends ApiClient {
+class AI AgentTopic extends ApiClient {
   constructor() {
-    super('aiagent/assistants', { accountScoped: true });
+    super('aiagent/topics', { accountScoped: true });
   }
 
   get({ page = 1, searchKey } = {}) {
@@ -15,12 +15,12 @@ class AI AgentAssistant extends ApiClient {
     });
   }
 
-  playground({ assistantId, messageContent, messageHistory }) {
-    return axios.post(`${this.url}/${assistantId}/playground`, {
+  playground({ topicId, messageContent, messageHistory }) {
+    return axios.post(`${this.url}/${topicId}/playground`, {
       message_content: messageContent,
       message_history: messageHistory,
     });
   }
 }
 
-export default new AI AgentAssistant();
+export default new AI AgentTopic();

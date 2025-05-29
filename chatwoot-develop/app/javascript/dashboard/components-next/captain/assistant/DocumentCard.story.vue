@@ -5,7 +5,7 @@ import { documentsList } from 'dashboard/components-next/aiagent/pageComponents/
 
 <template>
   <Story
-    title="AI Agent/Assistant/DocumentCard"
+    title="AI Agent/Topic/DocumentCard"
     :layout="{ type: 'grid', width: '700px' }"
   >
     <Variant title="Document Card">
@@ -18,7 +18,7 @@ import { documentsList } from 'dashboard/components-next/aiagent/pageComponents/
           :id="doc.id"
           :name="doc.name"
           :external-link="doc.external_link"
-          :assistant="doc.assistant"
+          :topic="doc.topic"
           :created-at="doc.created_at"
         />
       </div>

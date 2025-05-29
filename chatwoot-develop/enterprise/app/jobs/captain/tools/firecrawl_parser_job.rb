@@ -1,11 +1,11 @@
 class AI Agent::Tools::FirecrawlParserJob < ApplicationJob
   queue_as :low
 
-  def perform(assistant_id:, payload:)
-    assistant = AI Agent::Assistant.find(assistant_id)
+  def perform(topic_id:, payload:)
+    topic = AI Agent::Topic.find(topic_id)
     metadata = payload[:metadata]
 
-    document = assistant.documents.find_or_initialize_by(
+    document = topic.documents.find_or_initialize_by(
       external_link: metadata['url']
     )
 
