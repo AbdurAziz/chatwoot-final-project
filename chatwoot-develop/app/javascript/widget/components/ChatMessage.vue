@@ -43,6 +43,11 @@ export default {
     :message="message"
     :reply-to="replyTo"
   />
+  <div class="content-attributes">
+    <span class="tag">Sentiment: {{ message.contentAttributes?.sentiment }}</span>
+    <span class="tag">Source: {{ message.contentAttributes?.source }}</span>
+    <span class="tag">Urgency: {{ message.contentAttributes?.urgency }}</span>
+  </div>
 </template>
 
 <style scoped lang="scss">
