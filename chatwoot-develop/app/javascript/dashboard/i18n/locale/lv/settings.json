@@ -280,7 +280,7 @@
     "REPORTS": "Pārskati",
     "SETTINGS": "Iestatījumi",
     "CONTACTS": "Kontaktpersonas",
-    "CAPTAIN": "Captain",
+    "CAPTAIN": "AI Agent",
     "CAPTAIN_ASSISTANTS": "Asistenti",
     "CAPTAIN_DOCUMENTS": "Dokumenti",
     "CAPTAIN_RESPONSES": "Bieži uzdotie jautājumi",
@@ -359,12 +359,12 @@
       "BUTTON_TXT": "Doties uz norēķinu portālu"
     },
     "CAPTAIN": {
-      "TITLE": "Captain",
-      "DESCRIPTION": "Pārvaldīt Captain AI lietošanu un kredītus.",
+      "TITLE": "AI Agent",
+      "DESCRIPTION": "Pārvaldīt AI Agent AI lietošanu un kredītus.",
       "BUTTON_TXT": "Iegādāties vairāk kredītu",
       "DOCUMENTS": "Dokumenti",
       "RESPONSES": "Atbildes",
-      "UPGRADE": "Captain nav pieejams bezmaksas abonementā. Modernizējiet abonementu tūlīt, lai piekļūtu asistentiem un copilot."
+      "UPGRADE": "AI Agent nav pieejams bezmaksas abonementā. Modernizējiet abonementu tūlīt, lai piekļūtu asistentiem un copilot."
     },
     "CHAT_WITH_US": {
       "TITLE": "Nepieciešama palīdzība?",

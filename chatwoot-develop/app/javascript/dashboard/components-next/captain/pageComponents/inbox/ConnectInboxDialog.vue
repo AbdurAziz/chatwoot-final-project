@@ -8,7 +8,7 @@ import Dialog from 'dashboard/components-next/dialog/Dialog.vue';
 import ConnectInboxForm from './ConnectInboxForm.vue';
 
 defineProps({
-  assistantId: {
+  topicId: {
     type: Number,
     required: true,
   },
@@ -24,7 +24,7 @@ const i18nKey = 'CAPTAIN.INBOXES.CREATE';
 
 const handleSubmit = async payload => {
   try {
-    await store.dispatch('captainInboxes/create', payload);
+    await store.dispatch('aiagentInboxes/create', payload);
     useAlert(t(`${i18nKey}.SUCCESS_MESSAGE`));
     dialogRef.value.close();
   } catch (error) {
@@ -56,7 +56,7 @@ defineExpose({ dialogRef });
   >
     <ConnectInboxForm
       ref="connectForm"
-      :assistant-id="assistantId"
+      :topic-id="topicId"
       @submit="handleSubmit"
       @cancel="handleCancel"
     />

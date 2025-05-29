@@ -1,16 +1,16 @@
 module Enterprise::Account::PlanUsageAndLimits
-  CAPTAIN_RESPONSES = 'captain_responses'.freeze
-  CAPTAIN_DOCUMENTS = 'captain_documents'.freeze
-  CAPTAIN_RESPONSES_USAGE = 'captain_responses_usage'.freeze
-  CAPTAIN_DOCUMENTS_USAGE = 'captain_documents_usage'.freeze
+  CAPTAIN_RESPONSES = 'aiagent_responses'.freeze
+  CAPTAIN_DOCUMENTS = 'aiagent_documents'.freeze
+  CAPTAIN_RESPONSES_USAGE = 'aiagent_responses_usage'.freeze
+  CAPTAIN_DOCUMENTS_USAGE = 'aiagent_documents_usage'.freeze
 
   def usage_limits
     {
       agents: agent_limits.to_i,
       inboxes: get_limits(:inboxes).to_i,
-      captain: {
-        documents: get_captain_limits(:documents),
-        responses: get_captain_limits(:responses)
+      aiagent: {
+        documents: get_aiagent_limits(:documents),
+        responses: get_aiagent_limits(:responses)
       }
     }
   end
@@ -28,7 +28,7 @@ module Enterprise::Account::PlanUsageAndLimits
 
   def update_document_usage
     # this will ensure that the document count is always accurate
-    custom_attributes[CAPTAIN_DOCUMENTS_USAGE] = captain_documents.count
+    custom_attributes[CAPTAIN_DOCUMENTS_USAGE] = aiagent_documents.count
     save
   end
 
@@ -39,8 +39,8 @@ module Enterprise::Account::PlanUsageAndLimits
     plan_features[plan_name]
   end
 
-  def captain_monthly_limit
-    default_limits = default_captain_limits
+  def aiagent_monthly_limit
+    default_limits = default_aiagent_limits
 
     {
       documents: self[:limits][CAPTAIN_DOCUMENTS] || default_limits['documents'],
@@ -50,8 +50,8 @@ module Enterprise::Account::PlanUsageAndLimits
 
   private
 
-  def get_captain_limits(type)
-    total_count = captain_monthly_limit[type.to_s].to_i
+  def get_aiagent_limits(type)
+    total_count = aiagent_monthly_limit[type.to_s].to_i
 
     consumed = if type == :documents
                  custom_attributes[CAPTAIN_DOCUMENTS_USAGE].to_i || 0
@@ -68,7 +68,7 @@ module Enterprise::Account::PlanUsageAndLimits
     }
   end
 
-  def default_captain_limits
+  def default_aiagent_limits
     max_limits = { documents: ChatwootApp.max_limit, responses: ChatwootApp.max_limit }.with_indifferent_access
     zero_limits = { documents: 0, responses: 0 }.with_indifferent_access
     plan_quota = InstallationConfig.find_by(name: 'CAPTAIN_CLOUD_PLAN_LIMITS')&.value
@@ -118,8 +118,8 @@ module Enterprise::Account::PlanUsageAndLimits
       'properties' => {
         'inboxes' => { 'type': 'number' },
         'agents' => { 'type': 'number' },
-        'captain_responses' => { 'type': 'number' },
-        'captain_documents' => { 'type': 'number' }
+        'aiagent_responses' => { 'type': 'number' },
+        'aiagent_documents' => { 'type': 'number' }
       },
       'required' => [],
       'additionalProperties' => false

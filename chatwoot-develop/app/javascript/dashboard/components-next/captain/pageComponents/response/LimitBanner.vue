@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, computed } from 'vue';
 import { useAccount } from 'dashboard/composables/useAccount';
-import { useCaptain } from 'dashboard/composables/useCaptain';
+import { useAI Agent } from 'dashboard/composables/useAI Agent';
 import { useRouter } from 'vue-router';
 
 import Banner from 'dashboard/components-next/banner/Banner.vue';
@@ -9,7 +9,7 @@ import Banner from 'dashboard/components-next/banner/Banner.vue';
 const router = useRouter();
 const { accountId } = useAccount();
 
-const { responseLimits, fetchLimits } = useCaptain();
+const { responseLimits, fetchLimits } = useAI Agent();
 
 const openBilling = () => {
   router.push({

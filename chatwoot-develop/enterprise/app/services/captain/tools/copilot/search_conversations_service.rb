@@ -1,4 +1,4 @@
-class Captain::Tools::Copilot::SearchConversationsService < Captain::Tools::BaseService
+class AI Agent::Tools::Copilot::SearchConversationsService < AI Agent::Tools::BaseService
   def name
     'search_conversations'
   end
@@ -51,9 +51,9 @@ class Captain::Tools::Copilot::SearchConversationsService < Captain::Tools::Base
 
   def permissible_conversations
     Conversations::PermissionFilterService.new(
-      @assistant.account.conversations,
+      @topic.account.conversations,
       @user,
-      @assistant.account
+      @topic.account
     ).perform
   end
 

@@ -16,13 +16,13 @@ const messages = ref([
   },
   {
     id: 2,
-    role: 'assistant',
+    role: 'topic',
     content:
-      "Hello! I'm the AI assistant. I'll be helping the support team today.",
+      "Hello! I'm the AI topic. I'll be helping the support team today.",
   },
 ]);
 
-const isCaptainTyping = ref(false);
+const isAI AgentTyping = ref(false);
 
 const sendMessage = message => {
   // Add user message
@@ -33,12 +33,12 @@ const sendMessage = message => {
   });
 
   // Simulate AI response
-  isCaptainTyping.value = true;
+  isAI AgentTyping.value = true;
   setTimeout(() => {
-    isCaptainTyping.value = false;
+    isAI AgentTyping.value = false;
     messages.value.push({
       id: messages.value.length + 1,
-      role: 'assistant',
+      role: 'topic',
       content: 'This is a simulated AI response.',
     });
   }, 2000);
@@ -47,13 +47,13 @@ const sendMessage = message => {
 
 <template>
   <Story
-    title="Captain/Copilot"
+    title="AI Agent/Copilot"
     :layout="{ type: 'grid', width: '400px', height: '800px' }"
   >
     <Copilot
       :support-agent="supportAgent"
       :messages="messages"
-      :is-captain-typing="isCaptainTyping"
+      :is-aiagent-typing="isAI AgentTyping"
       @send-message="sendMessage"
     />
   </Story>

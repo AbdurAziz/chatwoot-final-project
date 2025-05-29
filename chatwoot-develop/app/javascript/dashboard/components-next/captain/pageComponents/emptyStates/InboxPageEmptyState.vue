@@ -1,8 +1,8 @@
 <script setup>
 import EmptyStateLayout from 'dashboard/components-next/EmptyStateLayout.vue';
 import Button from 'dashboard/components-next/button/Button.vue';
-import InboxCard from 'dashboard/components-next/captain/assistant/InboxCard.vue';
-import { inboxes } from 'dashboard/components-next/captain/pageComponents/emptyStates/captainEmptyStateContent.js';
+import InboxCard from 'dashboard/components-next/aiagent/topic/InboxCard.vue';
+import { inboxes } from 'dashboard/components-next/aiagent/pageComponents/emptyStates/aiagentEmptyStateContent.js';
 
 const emit = defineEmits(['click']);
 

@@ -1,11 +1,11 @@
 <script setup>
 import ResponseCard from './ResponseCard.vue';
-import { responsesList } from 'dashboard/components-next/captain/pageComponents/emptyStates/captainEmptyStateContent.js';
+import { responsesList } from 'dashboard/components-next/aiagent/pageComponents/emptyStates/aiagentEmptyStateContent.js';
 </script>
 
 <template>
   <Story
-    title="Captain/Assistant/ResponseCard"
+    title="AI Agent/Topic/ResponseCard"
     :layout="{ type: 'grid', width: '700px' }"
   >
     <Variant title="Article Card">
@@ -19,7 +19,7 @@ import { responsesList } from 'dashboard/components-next/captain/pageComponents/
           :question="response.question"
           :answer="response.answer"
           :status="response.status"
-          :assistant="response.assistant"
+          :topic="response.topic"
           :created-at="response.created_at"
         />
       </div>
