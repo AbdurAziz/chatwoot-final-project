@@ -160,7 +160,7 @@ const handleDocumentableClick = () => {
         <span
           class="text-sm shrink-0 truncate text-n-slate-11 inline-flex items-center gap-1"
         >
-          <i class="i-woot-captain" />
+          <i class="i-woot-aiagent" />
           {{ assistant?.name || '' }}
         </span>
         <div
@@ -168,7 +168,7 @@ const handleDocumentableClick = () => {
           class="shrink-0 text-sm text-n-slate-11 inline-flex line-clamp-1 gap-1 ml-3"
         >
           <span
-            v-if="documentable.type === 'Captain::Document'"
+            v-if="documentable.type === 'AI Agent::Document'"
             class="inline-flex items-center gap-1 truncate over"
           >
             <i class="i-ph-files-light text-base" />

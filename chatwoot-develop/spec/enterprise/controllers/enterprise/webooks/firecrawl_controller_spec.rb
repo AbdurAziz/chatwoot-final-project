@@ -4,7 +4,7 @@ RSpec.describe 'Firecrawl Webhooks', type: :request do
   describe 'POST /enterprise/webhooks/firecrawl?assistant_id=:assistant_id&token=:token' do
     let!(:api_key) { create(:installation_config, name: 'CAPTAIN_FIRECRAWL_API_KEY', value: 'test_api_key_123') }
     let!(:account) { create(:account) }
-    let!(:assistant) { create(:captain_assistant, account: account) }
+    let!(:assistant) { create(:aiagent_assistant, account: account) }
 
     let(:payload_data) do
       {
@@ -29,7 +29,7 @@ RSpec.describe 'Firecrawl Webhooks', type: :request do
         end
 
         it 'processes the webhook and returns success' do
-          expect(Captain::Tools::FirecrawlParserJob).to receive(:perform_later)
+          expect(AI Agent::Tools::FirecrawlParserJob).to receive(:perform_later)
             .with(
               assistant_id: assistant.id,
               payload: payload_data
@@ -53,7 +53,7 @@ RSpec.describe 'Firecrawl Webhooks', type: :request do
         end
 
         it 'returns success without enqueuing job' do
-          expect(Captain::Tools::FirecrawlParserJob).not_to receive(:perform_later)
+          expect(AI Agent::Tools::FirecrawlParserJob).not_to receive(:perform_later)
 
           post("/enterprise/webhooks/firecrawl?assistant_id=#{assistant.id}&token=#{valid_token}",
                params: valid_params,
