@@ -3,24 +3,24 @@ import { computed, onMounted, ref, nextTick } from 'vue';
 import { useMapGetter, useStore } from 'dashboard/composables/store';
 import { FEATURE_FLAGS } from 'dashboard/featureFlags';
 
-import DeleteDialog from 'dashboard/components-next/captain/pageComponents/DeleteDialog.vue';
-import DocumentCard from 'dashboard/components-next/captain/assistant/DocumentCard.vue';
-import PageLayout from 'dashboard/components-next/captain/PageLayout.vue';
-import CaptainPaywall from 'dashboard/components-next/captain/pageComponents/Paywall.vue';
-import RelatedResponses from 'dashboard/components-next/captain/pageComponents/document/RelatedResponses.vue';
-import CreateDocumentDialog from 'dashboard/components-next/captain/pageComponents/document/CreateDocumentDialog.vue';
-import AssistantSelector from 'dashboard/components-next/captain/pageComponents/AssistantSelector.vue';
-import DocumentPageEmptyState from 'dashboard/components-next/captain/pageComponents/emptyStates/DocumentPageEmptyState.vue';
+import DeleteDialog from 'dashboard/components-next/aiagent/pageComponents/DeleteDialog.vue';
+import DocumentCard from 'dashboard/components-next/aiagent/assistant/DocumentCard.vue';
+import PageLayout from 'dashboard/components-next/aiagent/PageLayout.vue';
+import AI AgentPaywall from 'dashboard/components-next/aiagent/pageComponents/Paywall.vue';
+import RelatedResponses from 'dashboard/components-next/aiagent/pageComponents/document/RelatedResponses.vue';
+import CreateDocumentDialog from 'dashboard/components-next/aiagent/pageComponents/document/CreateDocumentDialog.vue';
+import AssistantSelector from 'dashboard/components-next/aiagent/pageComponents/AssistantSelector.vue';
+import DocumentPageEmptyState from 'dashboard/components-next/aiagent/pageComponents/emptyStates/DocumentPageEmptyState.vue';
 import FeatureSpotlightPopover from 'dashboard/components-next/feature-spotlight/FeatureSpotlightPopover.vue';
-import LimitBanner from 'dashboard/components-next/captain/pageComponents/document/LimitBanner.vue';
+import LimitBanner from 'dashboard/components-next/aiagent/pageComponents/document/LimitBanner.vue';
 
 const store = useStore();
 
-const uiFlags = useMapGetter('captainDocuments/getUIFlags');
-const documents = useMapGetter('captainDocuments/getRecords');
-const assistants = useMapGetter('captainAssistants/getRecords');
+const uiFlags = useMapGetter('aiagentDocuments/getUIFlags');
+const documents = useMapGetter('aiagentDocuments/getRecords');
+const assistants = useMapGetter('aiagentAssistants/getRecords');
 const isFetching = computed(() => uiFlags.value.fetchingList);
-const documentsMeta = useMapGetter('captainDocuments/getMeta');
+const documentsMeta = useMapGetter('aiagentDocuments/getMeta');
 const selectedAssistant = ref('all');
 
 const selectedDocument = ref(null);
@@ -60,7 +60,7 @@ const handleCreateDialogClose = () => {
 
 const handleAction = ({ action, id }) => {
   selectedDocument.value = documents.value.find(
-    captainDocument => id === captainDocument.id
+    aiagentDocument => id === aiagentDocument.id
   );
 
   nextTick(() => {
@@ -78,7 +78,7 @@ const fetchDocuments = (page = 1) => {
   if (selectedAssistant.value !== 'all') {
     filterParams.assistantId = selectedAssistant.value;
   }
-  store.dispatch('captainDocuments/get', filterParams);
+  store.dispatch('aiagentDocuments/get', filterParams);
 };
 
 const handleAssistantFilterChange = assistant => {
@@ -96,7 +96,7 @@ const onDeleteSuccess = () => {
 
 onMounted(() => {
   if (!assistants.value.length) {
-    store.dispatch('captainAssistants/get');
+    store.dispatch('aiagentAssistants/get');
   }
   fetchDocuments();
 });
@@ -121,9 +121,9 @@ onMounted(() => {
         :button-label="$t('CAPTAIN.HEADER_KNOW_MORE')"
         :title="$t('CAPTAIN.DOCUMENTS.EMPTY_STATE.FEATURE_SPOTLIGHT.TITLE')"
         :note="$t('CAPTAIN.DOCUMENTS.EMPTY_STATE.FEATURE_SPOTLIGHT.NOTE')"
-        fallback-thumbnail="/assets/images/dashboard/captain/document-popover-light.svg"
-        fallback-thumbnail-dark="/assets/images/dashboard/captain/document-popover-dark.svg"
-        learn-more-url="https://chwt.app/captain-document"
+        fallback-thumbnail="/assets/images/dashboard/aiagent/document-popover-light.svg"
+        fallback-thumbnail-dark="/assets/images/dashboard/aiagent/document-popover-dark.svg"
+        learn-more-url="https://chwt.app/aiagent-document"
       />
     </template>
 
@@ -132,7 +132,7 @@ onMounted(() => {
     </template>
 
     <template #paywall>
-      <CaptainPaywall />
+      <AI AgentPaywall />
     </template>
 
     <template #controls>
@@ -164,7 +164,7 @@ onMounted(() => {
     <RelatedResponses
       v-if="showRelatedResponses"
       ref="relationQuestionDialog"
-      :captain-document="selectedDocument"
+      :aiagent-document="selectedDocument"
       @close="handleRelatedResponseClose"
     />
     <CreateDocumentDialog

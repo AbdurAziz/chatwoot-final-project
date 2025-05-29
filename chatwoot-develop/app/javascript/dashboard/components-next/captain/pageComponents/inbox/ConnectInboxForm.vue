@@ -20,9 +20,9 @@ const emit = defineEmits(['submit', 'cancel']);
 const { t } = useI18n();
 
 const formState = {
-  uiFlags: useMapGetter('captainInboxes/getUIFlags'),
+  uiFlags: useMapGetter('aiagentInboxes/getUIFlags'),
   inboxes: useMapGetter('inboxes/getInboxes'),
-  captainInboxes: useMapGetter('captainInboxes/getRecords'),
+  aiagentInboxes: useMapGetter('aiagentInboxes/getRecords'),
 };
 
 const initialState = {
@@ -36,10 +36,10 @@ const validationRules = {
 };
 
 const inboxList = computed(() => {
-  const captainInboxIds = formState.captainInboxes.value.map(inbox => inbox.id);
+  const aiagentInboxIds = formState.aiagentInboxes.value.map(inbox => inbox.id);
 
   return formState.inboxes.value
-    .filter(inbox => !captainInboxIds.includes(inbox.id))
+    .filter(inbox => !aiagentInboxIds.includes(inbox.id))
     .map(inbox => ({
       value: inbox.id,
       label: inbox.name,

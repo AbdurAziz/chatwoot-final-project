@@ -24,7 +24,7 @@ const i18nKey = 'CAPTAIN.INBOXES.CREATE';
 
 const handleSubmit = async payload => {
   try {
-    await store.dispatch('captainInboxes/create', payload);
+    await store.dispatch('aiagentInboxes/create', payload);
     useAlert(t(`${i18nKey}.SUCCESS_MESSAGE`));
     dialogRef.value.close();
   } catch (error) {

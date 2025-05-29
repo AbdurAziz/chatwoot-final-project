@@ -17,7 +17,7 @@ const emit = defineEmits(['update']);
 const { t } = useI18n();
 const isFilterOpen = ref(false);
 
-const assistants = useMapGetter('captainAssistants/getRecords');
+const assistants = useMapGetter('aiagentAssistants/getRecords');
 const assistantOptions = computed(() => [
   {
     label: t(`CAPTAIN.RESPONSES.FILTER.ALL_ASSISTANTS`),

@@ -25,8 +25,8 @@ const emit = defineEmits(['submit', 'cancel']);
 const { t } = useI18n();
 
 const formState = {
-  uiFlags: useMapGetter('captainResponses/getUIFlags'),
-  assistants: useMapGetter('captainAssistants/getRecords'),
+  uiFlags: useMapGetter('aiagentResponses/getUIFlags'),
+  assistants: useMapGetter('aiagentAssistants/getRecords'),
 };
 
 const initialState = {

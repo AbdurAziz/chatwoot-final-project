@@ -31,7 +31,7 @@ const deleteEntity = async payload => {
   if (!payload) return;
 
   try {
-    await store.dispatch(`captain${props.type}/delete`, payload);
+    await store.dispatch(`aiagent${props.type}/delete`, payload);
     emit('deleteSuccess');
     useAlert(t(`CAPTAIN.${i18nKey.value}.DELETE.SUCCESS_MESSAGE`));
   } catch (error) {

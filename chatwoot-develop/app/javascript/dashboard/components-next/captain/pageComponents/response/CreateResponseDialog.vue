@@ -26,7 +26,7 @@ const dialogRef = ref(null);
 const responseForm = ref(null);
 
 const updateResponse = responseDetails =>
-  store.dispatch('captainResponses/update', {
+  store.dispatch('aiagentResponses/update', {
     id: props.selectedResponse.id,
     ...responseDetails,
   });
@@ -34,7 +34,7 @@ const updateResponse = responseDetails =>
 const i18nKey = computed(() => `CAPTAIN.RESPONSES.${props.type.toUpperCase()}`);
 
 const createResponse = responseDetails =>
-  store.dispatch('captainResponses/create', responseDetails);
+  store.dispatch('aiagentResponses/create', responseDetails);
 
 const handleSubmit = async updatedResponse => {
   try {

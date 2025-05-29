@@ -1,5 +1,5 @@
-class RemoveNotNullFromCaptainDocuments < ActiveRecord::Migration[7.0]
+class RemoveNotNullFromAI AgentDocuments < ActiveRecord::Migration[7.0]
   def change
-    change_column_null :captain_documents, :name, true
+    change_column_null :aiagent_documents, :name, true
   end
 end

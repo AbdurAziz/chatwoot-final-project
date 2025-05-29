@@ -26,7 +26,7 @@ const dialogRef = ref(null);
 const assistantForm = ref(null);
 
 const updateAssistant = assistantDetails =>
-  store.dispatch('captainAssistants/update', {
+  store.dispatch('aiagentAssistants/update', {
     id: props.selectedAssistant.id,
     ...assistantDetails,
   });
@@ -36,7 +36,7 @@ const i18nKey = computed(
 );
 
 const createAssistant = assistantDetails =>
-  store.dispatch('captainAssistants/create', assistantDetails);
+  store.dispatch('aiagentAssistants/create', assistantDetails);
 
 const handleSubmit = async updatedAssistant => {
   try {

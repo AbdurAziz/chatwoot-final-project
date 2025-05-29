@@ -1,4 +1,4 @@
-class Captain::Documents::CrawlJob < ApplicationJob
+class AI Agent::Documents::CrawlJob < ApplicationJob
   queue_as :low
 
   def perform(document)
@@ -11,30 +11,30 @@ class Captain::Documents::CrawlJob < ApplicationJob
 
   private
 
-  include Captain::FirecrawlHelper
+  include AI Agent::FirecrawlHelper
 
   def perform_simple_crawl(document)
-    page_links = Captain::Tools::SimplePageCrawlService.new(document.external_link).page_links
+    page_links = AI Agent::Tools::SimplePageCrawlService.new(document.external_link).page_links
 
     page_links.each do |page_link|
-      Captain::Tools::SimplePageCrawlParserJob.perform_later(
+      AI Agent::Tools::SimplePageCrawlParserJob.perform_later(
         assistant_id: document.assistant_id,
         page_link: page_link
       )
     end
 
-    Captain::Tools::SimplePageCrawlParserJob.perform_later(
+    AI Agent::Tools::SimplePageCrawlParserJob.perform_later(
       assistant_id: document.assistant_id,
       page_link: document.external_link
     )
   end
 
   def perform_firecrawl_crawl(document)
-    captain_usage_limits = document.account.usage_limits[:captain] || {}
-    document_limit = captain_usage_limits[:documents] || {}
+    aiagent_usage_limits = document.account.usage_limits[:aiagent] || {}
+    document_limit = aiagent_usage_limits[:documents] || {}
     crawl_limit = [document_limit[:current_available] || 10, 500].min
 
-    Captain::Tools::FirecrawlService
+    AI Agent::Tools::FirecrawlService
       .new
       .perform(
         document.external_link,

@@ -1,9 +1,9 @@
 /* global axios */
 import ApiClient from '../ApiClient';
 
-class CaptainInboxes extends ApiClient {
+class AI AgentInboxes extends ApiClient {
   constructor() {
-    super('captain/assistants', { accountScoped: true });
+    super('aiagent/assistants', { accountScoped: true });
   }
 
   get({ assistantId } = {}) {
@@ -23,4 +23,4 @@ class CaptainInboxes extends ApiClient {
   }
 }
 
-export default new CaptainInboxes();
+export default new AI AgentInboxes();
