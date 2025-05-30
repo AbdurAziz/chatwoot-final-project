@@ -57,11 +57,19 @@ $color-body: #3c4858;
 $color-heading: #1f2d3d;
 $color-extra-light-blue: #f5f7f9;
 
-$primary-color: $color-woot;
-$secondary-color: #5d7592;
+
+$primary-color: $color-primary;
+$secondary-color: $color-secondary;
 $success-color: #44ce4b;
 $warning-color: #ffc532;
 $alert-color: #ff382d;
+
+$color-primary:   #4F46E5;  // Soft Indigo — approachable but bold
+$color-secondary: #06B6D4;  // Sky Blue — evokes clarity and friendliness
+$color-bg:        #F9FAFB;  // Light Gray — clean, modern background
+$color-text:      #1F2937;  // Charcoal — readable and professional
+$color-accent:    #FBBF24;  // Warm Yellow — subtle highlights
+
 
 $masked-bg: rgba(0, 0, 0, .4);
 
