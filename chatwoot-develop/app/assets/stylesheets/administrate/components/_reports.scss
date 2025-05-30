@@ -1,15 +1,29 @@
 .report--list {
   display: flex;
   padding: 0 $space-two $space-larger;
+  background-color: $color-bg; // subtle background for section
+  border-radius: $base-border-radius;
 }
 
 .report-card {
   flex: 1;
   font-size: $font-size-small;
   text-align: center;
+  padding: $space-normal;
+  background-color: lighten($color-primary, 42%); // lightened primary brand for card bg
+  color: $color-text;
+  border-radius: $base-border-radius;
+  margin: 0 $space-small;
+
 
   .metric {
     font-size: $font-size-bigger;
     font-weight: 200;
+    color: $color-primary;
+  }
+   &:hover {
+    background-color: lighten($color-accent, 32%); // slight highlight on hover
+    transform: translateY(-2px);
+    transition: all 0.2s ease-in-out;
   }
 }
