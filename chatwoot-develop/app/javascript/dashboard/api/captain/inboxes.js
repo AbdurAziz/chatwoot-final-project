@@ -1,26 +1,26 @@
 /* global axios */
 import ApiClient from '../ApiClient';
 
-class CaptainInboxes extends ApiClient {
+class AI AgentInboxes extends ApiClient {
   constructor() {
-    super('captain/assistants', { accountScoped: true });
+    super('aiagent/topics', { accountScoped: true });
   }
 
-  get({ assistantId } = {}) {
-    return axios.get(`${this.url}/${assistantId}/inboxes`);
+  get({ topicId } = {}) {
+    return axios.get(`${this.url}/${topicId}/inboxes`);
   }
 
   create(params = {}) {
-    const { assistantId, inboxId } = params;
-    return axios.post(`${this.url}/${assistantId}/inboxes`, {
+    const { topicId, inboxId } = params;
+    return axios.post(`${this.url}/${topicId}/inboxes`, {
       inbox: { inbox_id: inboxId },
     });
   }
 
   delete(params = {}) {
-    const { assistantId, inboxId } = params;
-    return axios.delete(`${this.url}/${assistantId}/inboxes/${inboxId}`);
+    const { topicId, inboxId } = params;
+    return axios.delete(`${this.url}/${topicId}/inboxes/${inboxId}`);
   }
 }
 
-export default new CaptainInboxes();
+export default new AI AgentInboxes();
