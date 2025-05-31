@@ -6,7 +6,7 @@ import Spinner from 'dashboard/components-next/spinner/Spinner.vue';
 import Dialog from 'dashboard/components-next/dialog/Dialog.vue';
 import ResponseCard from '../../assistant/ResponseCard.vue';
 const props = defineProps({
-  captainDocument: {
+  aiagentDocument: {
     type: Object,
     required: true,
   },
@@ -16,8 +16,8 @@ const { t } = useI18n();
 const store = useStore();
 const dialogRef = ref(null);
 
-const uiFlags = useMapGetter('captainResponses/getUIFlags');
-const responses = useMapGetter('captainResponses/getRecords');
+const uiFlags = useMapGetter('aiagentResponses/getUIFlags');
+const responses = useMapGetter('aiagentResponses/getRecords');
 const isFetching = computed(() => uiFlags.value.fetchingList);
 
 const handleClose = () => {
@@ -25,9 +25,9 @@ const handleClose = () => {
 };
 
 onMounted(() => {
-  store.dispatch('captainResponses/get', {
-    assistantId: props.captainDocument.assistant.id,
-    documentId: props.captainDocument.id,
+  store.dispatch('aiagentResponses/get', {
+    assistantId: props.aiagentDocument.assistant.id,
+    documentId: props.aiagentDocument.id,
   });
 });
 defineExpose({ dialogRef });

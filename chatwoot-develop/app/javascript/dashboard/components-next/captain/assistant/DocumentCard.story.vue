@@ -1,11 +1,11 @@
 <script setup>
 import DocumentCard from './DocumentCard.vue';
-import { documentsList } from 'dashboard/components-next/captain/pageComponents/emptyStates/captainEmptyStateContent.js';
+import { documentsList } from 'dashboard/components-next/aiagent/pageComponents/emptyStates/aiagentEmptyStateContent.js';
 </script>
 
 <template>
   <Story
-    title="Captain/Assistant/DocumentCard"
+    title="AI Agent/Assistant/DocumentCard"
     :layout="{ type: 'grid', width: '700px' }"
   >
     <Variant title="Document Card">

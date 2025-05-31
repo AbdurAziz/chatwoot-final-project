@@ -5,25 +5,25 @@ import { useStore } from 'dashboard/composables/store';
 import { useMapGetter } from 'dashboard/composables/store';
 import { useAlert } from 'dashboard/composables';
 import { useI18n } from 'vue-i18n';
-import PageLayout from 'dashboard/components-next/captain/PageLayout.vue';
-import EditAssistantForm from '../../../../components-next/captain/pageComponents/assistant/EditAssistantForm.vue';
-import AssistantPlayground from 'dashboard/components-next/captain/assistant/AssistantPlayground.vue';
+import PageLayout from 'dashboard/components-next/aiagent/PageLayout.vue';
+import EditAssistantForm from '../../../../components-next/aiagent/pageComponents/assistant/EditAssistantForm.vue';
+import AssistantPlayground from 'dashboard/components-next/aiagent/assistant/AssistantPlayground.vue';
 
 const route = useRoute();
 const store = useStore();
 const { t } = useI18n();
 const assistantId = route.params.assistantId;
-const uiFlags = useMapGetter('captainAssistants/getUIFlags');
+const uiFlags = useMapGetter('aiagentAssistants/getUIFlags');
 const isFetching = computed(() => uiFlags.value.fetchingItem);
 const assistant = computed(() =>
-  store.getters['captainAssistants/getRecord'](Number(assistantId))
+  store.getters['aiagentAssistants/getRecord'](Number(assistantId))
 );
 
 const isAssistantAvailable = computed(() => !!assistant.value?.id);
 
 const handleSubmit = async updatedAssistant => {
   try {
-    await store.dispatch('captainAssistants/update', {
+    await store.dispatch('aiagentAssistants/update', {
       id: assistantId,
       ...updatedAssistant,
     });
@@ -37,7 +37,7 @@ const handleSubmit = async updatedAssistant => {
 
 onMounted(() => {
   if (!isAssistantAvailable.value) {
-    store.dispatch('captainAssistants/show', assistantId);
+    store.dispatch('aiagentAssistants/show', assistantId);
   }
 });
 </script>
@@ -48,7 +48,7 @@ onMounted(() => {
     :show-pagination-footer="false"
     :is-fetching="isFetching"
     :show-know-more="false"
-    :back-url="{ name: 'captain_assistants_index' }"
+    :back-url="{ name: 'aiagent_assistants_index' }"
   >
     <template #body>
       <div v-if="!isAssistantAvailable">

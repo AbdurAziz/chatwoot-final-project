@@ -1,7 +1,7 @@
-import CaptainDocumentAPI from 'dashboard/api/captain/document';
+import AI AgentDocumentAPI from 'dashboard/api/aiagent/document';
 import { createStore } from './storeFactory';
 
 export default createStore({
-  name: 'CaptainDocument',
-  API: CaptainDocumentAPI,
+  name: 'AI AgentDocument',
+  API: AI AgentDocumentAPI,
 });

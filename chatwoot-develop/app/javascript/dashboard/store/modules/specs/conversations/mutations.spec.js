@@ -556,7 +556,7 @@ describe('#mutations', () => {
   });
 
   describe('#SET_INBOX_CAPTAIN_ASSISTANT', () => {
-    it('set inbox captain assistant', () => {
+    it('set inbox aiagent assistant', () => {
       const state = { copilotAssistant: {} };
       const data = {
         assistant: {
