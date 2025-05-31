@@ -18,7 +18,7 @@ const props = defineProps({
     type: String,
     default: '',
   },
-  assistant: {
+  topic: {
     type: Object,
     default: () => ({}),
   },
@@ -100,8 +100,8 @@ const handleAction = ({ action, value }) => {
       <span
         class="text-sm shrink-0 truncate text-n-slate-11 flex items-center gap-1"
       >
-        <i class="i-woot-captain" />
-        {{ assistant?.name || '' }}
+        <i class="i-woot-aiagent" />
+        {{ topic?.name || '' }}
       </span>
       <span
         class="text-n-slate-11 text-sm truncate flex justify-start flex-1 items-center gap-1"

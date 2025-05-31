@@ -1,4 +1,4 @@
-import CopilotMessagesAPI from 'dashboard/api/captain/copilotMessages';
+import CopilotMessagesAPI from 'dashboard/api/aiagent/copilotMessages';
 import { createStore } from './storeFactory';
 
 export default createStore({

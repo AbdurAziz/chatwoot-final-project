@@ -18,7 +18,7 @@ const i18nKey = 'CAPTAIN.DOCUMENTS.CREATE';
 
 const handleSubmit = async newDocument => {
   try {
-    await store.dispatch('captainDocuments/create', newDocument);
+    await store.dispatch('aiagentDocuments/create', newDocument);
     useAlert(t(`${i18nKey}.SUCCESS_MESSAGE`));
     dialogRef.value.close();
   } catch (error) {

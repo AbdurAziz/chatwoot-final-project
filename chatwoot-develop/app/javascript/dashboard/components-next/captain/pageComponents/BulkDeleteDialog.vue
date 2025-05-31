@@ -28,7 +28,7 @@ const handleBulkDelete = async ids => {
 
   try {
     await store.dispatch(
-      'captainBulkActions/handleBulkDelete',
+      'aiagentBulkActions/handleBulkDelete',
       Array.from(props.bulkIds)
     );
 

@@ -10,23 +10,23 @@ import { FEATURE_FLAGS } from 'dashboard/featureFlags';
 import Button from 'dashboard/components-next/button/Button.vue';
 import Checkbox from 'dashboard/components-next/checkbox/Checkbox.vue';
 import DropdownMenu from 'dashboard/components-next/dropdown-menu/DropdownMenu.vue';
-import DeleteDialog from 'dashboard/components-next/captain/pageComponents/DeleteDialog.vue';
-import BulkDeleteDialog from 'dashboard/components-next/captain/pageComponents/BulkDeleteDialog.vue';
-import PageLayout from 'dashboard/components-next/captain/PageLayout.vue';
-import CaptainPaywall from 'dashboard/components-next/captain/pageComponents/Paywall.vue';
-import AssistantSelector from 'dashboard/components-next/captain/pageComponents/AssistantSelector.vue';
-import ResponseCard from 'dashboard/components-next/captain/assistant/ResponseCard.vue';
-import CreateResponseDialog from 'dashboard/components-next/captain/pageComponents/response/CreateResponseDialog.vue';
-import ResponsePageEmptyState from 'dashboard/components-next/captain/pageComponents/emptyStates/ResponsePageEmptyState.vue';
+import DeleteDialog from 'dashboard/components-next/aiagent/pageComponents/DeleteDialog.vue';
+import BulkDeleteDialog from 'dashboard/components-next/aiagent/pageComponents/BulkDeleteDialog.vue';
+import PageLayout from 'dashboard/components-next/aiagent/PageLayout.vue';
+import AI AgentPaywall from 'dashboard/components-next/aiagent/pageComponents/Paywall.vue';
+import TopicSelector from 'dashboard/components-next/aiagent/pageComponents/TopicSelector.vue';
+import ResponseCard from 'dashboard/components-next/aiagent/topic/ResponseCard.vue';
+import CreateResponseDialog from 'dashboard/components-next/aiagent/pageComponents/response/CreateResponseDialog.vue';
+import ResponsePageEmptyState from 'dashboard/components-next/aiagent/pageComponents/emptyStates/ResponsePageEmptyState.vue';
 import FeatureSpotlightPopover from 'dashboard/components-next/feature-spotlight/FeatureSpotlightPopover.vue';
-import LimitBanner from 'dashboard/components-next/captain/pageComponents/response/LimitBanner.vue';
+import LimitBanner from 'dashboard/components-next/aiagent/pageComponents/response/LimitBanner.vue';
 
 const router = useRouter();
 const store = useStore();
-const uiFlags = useMapGetter('captainResponses/getUIFlags');
-const assistants = useMapGetter('captainAssistants/getRecords');
-const responseMeta = useMapGetter('captainResponses/getMeta');
-const responses = useMapGetter('captainResponses/getRecords');
+const uiFlags = useMapGetter('aiagentResponses/getUIFlags');
+const topics = useMapGetter('aiagentTopics/getRecords');
+const responseMeta = useMapGetter('aiagentResponses/getMeta');
+const responses = useMapGetter('aiagentResponses/getRecords');
 const isFetching = computed(() => uiFlags.value.fetchingList);
 
 const selectedResponse = ref(null);
@@ -34,7 +34,7 @@ const deleteDialog = ref(null);
 const bulkDeleteDialog = ref(null);
 
 const selectedStatus = ref('all');
-const selectedAssistant = ref('all');
+const selectedTopic = ref('all');
 const dialogType = ref('');
 const { t } = useI18n();
 
@@ -42,7 +42,7 @@ const createDialog = ref(null);
 
 const isStatusFilterOpen = ref(false);
 const shouldShowDropdown = computed(() => {
-  if (assistants.value.length === 0) return false;
+  if (topics.value.length === 0) return false;
 
   return !isFetching.value;
 });
@@ -69,7 +69,7 @@ const handleDelete = () => {
 };
 const handleAccept = async () => {
   try {
-    await store.dispatch('captainResponses/update', {
+    await store.dispatch('aiagentResponses/update', {
       id: selectedResponse.value.id,
       status: 'approved',
     });
@@ -127,10 +127,10 @@ const fetchResponses = (page = 1) => {
   if (selectedStatus.value !== 'all') {
     filterParams.status = selectedStatus.value;
   }
-  if (selectedAssistant.value !== 'all') {
-    filterParams.assistantId = selectedAssistant.value;
+  if (selectedTopic.value !== 'all') {
+    filterParams.topicId = selectedTopic.value;
   }
-  store.dispatch('captainResponses/get', filterParams);
+  store.dispatch('aiagentResponses/get', filterParams);
 };
 
 // Bulk action
@@ -170,7 +170,7 @@ const handleCardSelect = id => {
 const handleBulkApprove = async () => {
   try {
     await store.dispatch(
-      'captainBulkActions/handleBulkApprove',
+      'aiagentBulkActions/handleBulkApprove',
       Array.from(bulkSelectedIds.value)
     );
 
@@ -223,13 +223,13 @@ const handleStatusFilterChange = ({ value }) => {
   fetchResponses();
 };
 
-const handleAssistantFilterChange = assistant => {
-  selectedAssistant.value = assistant;
+const handleTopicFilterChange = topic => {
+  selectedTopic.value = topic;
   fetchResponses();
 };
 
 onMounted(() => {
-  store.dispatch('captainAssistants/get');
+  store.dispatch('aiagentTopics/get');
   fetchResponses();
 });
 </script>
@@ -253,9 +253,9 @@ onMounted(() => {
         :button-label="$t('CAPTAIN.HEADER_KNOW_MORE')"
         :title="$t('CAPTAIN.RESPONSES.EMPTY_STATE.FEATURE_SPOTLIGHT.TITLE')"
         :note="$t('CAPTAIN.RESPONSES.EMPTY_STATE.FEATURE_SPOTLIGHT.NOTE')"
-        fallback-thumbnail="/assets/images/dashboard/captain/faqs-popover-light.svg"
-        fallback-thumbnail-dark="/assets/images/dashboard/captain/faqs-popover-dark.svg"
-        learn-more-url="https://chwt.app/captain-faq"
+        fallback-thumbnail="/assets/images/dashboard/aiagent/faqs-popover-light.svg"
+        fallback-thumbnail-dark="/assets/images/dashboard/aiagent/faqs-popover-dark.svg"
+        learn-more-url="https://chwt.app/aiagent-faq"
       />
     </template>
 
@@ -264,7 +264,7 @@ onMounted(() => {
     </template>
 
     <template #paywall>
-      <CaptainPaywall />
+      <AI AgentPaywall />
     </template>
 
     <template #controls>
@@ -291,9 +291,9 @@ onMounted(() => {
               @action="handleStatusFilterChange"
             />
           </OnClickOutside>
-          <AssistantSelector
-            :assistant-id="selectedAssistant"
-            @update="handleAssistantFilterChange"
+          <TopicSelector
+            :topic-id="selectedTopic"
+            @update="handleTopicFilterChange"
           />
         </div>
 
@@ -351,7 +351,7 @@ onMounted(() => {
           :key="response.id"
           :question="response.question"
           :answer="response.answer"
-          :assistant="response.assistant"
+          :topic="response.topic"
           :documentable="response.documentable"
           :status="response.status"
           :created-at="response.created_at"
