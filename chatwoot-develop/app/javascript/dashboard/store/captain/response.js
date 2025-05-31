@@ -1,9 +1,9 @@
-import CaptainResponseAPI from 'dashboard/api/captain/response';
+import AI AgentResponseAPI from 'dashboard/api/aiagent/response';
 import { createStore } from './storeFactory';
 
 export default createStore({
-  name: 'CaptainResponse',
-  API: CaptainResponseAPI,
+  name: 'AI AgentResponse',
+  API: AI AgentResponseAPI,
   actions: mutations => ({
     removeBulkResponses: ({ commit, state }, ids) => {
       const updatedRecords = state.records.filter(

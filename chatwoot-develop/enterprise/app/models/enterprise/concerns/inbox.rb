@@ -2,9 +2,9 @@ module Enterprise::Concerns::Inbox
   extend ActiveSupport::Concern
 
   included do
-    has_one :captain_inbox, dependent: :destroy, class_name: 'CaptainInbox'
-    has_one :captain_assistant,
-            through: :captain_inbox,
-            class_name: 'Captain::Assistant'
+    has_one :aiagent_inbox, dependent: :destroy, class_name: 'AI AgentInbox'
+    has_one :aiagent_topic,
+            through: :aiagent_inbox,
+            class_name: 'AI Agent::Topic'
   end
 end
